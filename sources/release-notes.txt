@@ -1,0 +1,79 @@
+###############
+# 2020.1.15.0 #
+###############
+> Erstellung des Scripts
+> Download der Programme zur Standard-Installation
+	Firefox 72.0.1
+	7-Zip 19.00
+	Adobe Reader 2019.021.20058
+> Erstkonzept anlegen DRCNE
+> Werkzeuge kopieren
+	TeamViewer GuR
+	AnyDesk GuR
+	SIW Portable
+
+###############
+# 2021.2.16.0 #
+###############
+> Download der Programme zur Standard-Installation
+	Firefox immer aktuell
+	Adobe Reader 21.1.20135.27840
+> Standard-Installation
+	Firefox
+	7-Zip
+	Adobe Reader
+> Werkzeuge kopieren
+	Verkn�pfung von TeamViewer GuR auf öffentlichen Desktop
+	Verkn�pfung von AnyDesk GuR auf öffentlichen Desktop
+	Aktualisierung SIW Portable Version
+
+###############
+# 2021.2.22.0 #
+###############
+> Werkzeuge kopieren
+	SIW Portable wird nicht mehr kopiert (Lizenzrecht), sondern liegt im GI-Script bei
+> Reg-Keys einspielen
+	Windows-Update auch für Microsoft Produkte wird aktiviert
+	RDP wird aktiviert
+	Authentifizierung auf Nettzwerkebene für RDP wird deaktiviert
+> SIW-Datei erzeugen
+	Erzeugt unter \SIW-FILES eine SIW-Datei nach Datum_Hostname.xml
+
+###############
+# 2021.2.25.0 #
+###############
+> Download der Programme zur Standard-Installation
+	Firefox wird nun immer in der aktuellen Version heruntergefahren und installiert
+> Reg-Keys einspielen
+	Windows-Update aktivieren korrigiert
+	Standby-Modus deaktiviert
+
+###############
+# 2021.3.04.0 #
+###############
+> Reg-Keys einspielen
+	Korrektur bei Windows-Update Aktivierung
+	Korrektur fehlender Reg-Key-Scripte
+	
+###############
+# 2021.3.04.1 #
+###############
+> Vorinstallierte APPS entfernen
+	Deinstallations-Script wurde angepasst
+	
+###############
+# 2021.3.04.2 #
+###############
+> Office Deinstallation
+	Deinstallation von Office Click2Run wurde implementiert
+
+###############
+# 2021.6.02.0 #
+###############
+> SIW-Datei erzeugen
+	Anpassung des SIW-Aufrufs aufgrund von gelegentlichen BlueScreens
+	
+###############
+# 2021.6.02.1 #
+###############
+> Fehler mit Umlauten behoben
