@@ -1,4 +1,4 @@
-cls
+Clear-Host
 Set-Location -Path $PSScriptRoot
 Start-BitsTransfer -Source https://static.gur.de/GIScripts/GuR_GI_Client.ps1 -Destination $PSScriptRoot\GuR_GI_Client.ps1 | out-null
 Start-BitsTransfer -Source https://static.gur.de/GIScripts/GuR_GI_Main.ps1 -Destination $PSScriptRoot\GuR_GI_Main.ps1 | out-null
@@ -41,9 +41,9 @@ function checkForUpdates {
 }
 function cleanupFiles {
     Write-Host "Fortfahren? Alle Setups (auch Custom-Setups!) werden entfernt und neu heruntergeladen! (j/n)" -foregroundColor red
-    $input = Read-Host "(j/n)"
-    cls
-    switch ($input)
+    $gieingabe = Read-Host "(j/n)"
+    Clear-Host
+    switch ($gieingabe)
         {
             'j' {
 	            Remove-Item $PSScriptRoot\custom\ -Recurse -Force
@@ -86,7 +86,7 @@ Import-Module BitsTransfer
 while ($n -gt 0){
 function GuRGIMenue
 {
-    cls
+    Clear-Host
     If(!(test-path "$PSScriptRoot\filedepot\wget.exe")) {
     Write-Host "!ACHTUNG! !ACHTUNG! !ACHTUNG! !ACHTUNG!" -ForegroundColor Red
     Write-Host "Es wurden noch keine Installations-Dateien heruntergeladen!" -ForegroundColor Red
@@ -126,12 +126,12 @@ GuRGIMenue
 
 Write-Host
 Write-Host "================================"
-$input = Read-Host "Bitte treffen Sie eine Auswahl"
-cls
-switch ($input)
+$gieingabe = Read-Host "Bitte treffen Sie eine Auswahl"
+Clear-Host
+switch ($gieingabe)
     {
         '1' {
-    cls
+    Clear-Host
     Write-Host "Standard-Installation"
     Write-Host "Installiere Firefox..."
     Set-Location -Path $PSScriptRoot\filedepot\
@@ -152,7 +152,7 @@ switch ($input)
 
     Write-Host "Enter zum fortfahren"
 	Read-Host
-	cls
+	Clear-Host
    }
   '2' {
     Write-Host "Werkzeuge kopieren"
@@ -175,7 +175,7 @@ switch ($input)
 
         Write-Host "Erledigt..." -foregroundColor green
 		Read-Host "Enter zum Fortfahren"
-		cls
+		Clear-Host
    }
   '3' {
     Write-Host "Reg-Keys einspielen"
@@ -189,7 +189,7 @@ switch ($input)
     &"$PSScriptRoot\sources\PSFiles\reg.standby.ps1"
 
     Read-Host "Enter zum Fortfahren"
-	cls
+	Clear-Host
    }
   '4' {
     Write-Host "SIW-Datei erzeugen"
@@ -214,7 +214,7 @@ switch ($input)
     #Remove Perinstalled Apps
     &"$PSScriptRoot\sources\PSFiles\del.apps.ps1"
     Read-Host "Enter zum Fortfahren"
-	cls
+	Clear-Host
    }
   '6' {
     Write-Host "Office entfernen"
@@ -222,25 +222,25 @@ switch ($input)
 #	Set-Location -Path $PSScriptRoot\filedepot\
     & "$PSScriptRoot\filedepot\ODT.exe" /configure "$PSScriptRoot\sources\PSFiles\del.office.xml"
     Read-Host "Enter zum Fortfahren"
-	cls
+	Clear-Host
    }
   '96' {
     Write-Host "Versionshistorie"
     Get-Content -Path $PSScriptRoot\sources\release-notes.txt
 	Read-Host
-	cls
+	Clear-Host
    }
   '97' {
     checkForUpdates
-	cls
+	Clear-Host
    }
   '98' {
     cleanupFiles
-	cls
+	Clear-Host
    }
   '99' {
 	updateFiles
-	cls
+	Clear-Host
    }
   'q' {
     exit
