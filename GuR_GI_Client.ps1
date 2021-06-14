@@ -2,8 +2,8 @@ Clear-Host
 Set-Location -Path $PSScriptRoot
 function checkForUpdates {
 	Write-Host "Script auf Updates prüfen"
-    & "$PSScriptRoot\git\cmd\git.exe" fetch origin master
-    & "$PSScriptRoot\git\cmd\git.exe" reset --hard origin/master
+    #& "$PSScriptRoot\git\cmd\git.exe" fetch origin master
+    & "$PSScriptRoot\git\cmd\git.exe" reset --hard
     #& "$PSScriptRoot\git\cmd\git.exe" pull
     If((test-path "$PSScriptRoot\GuR_GI_Update.ps1")) {
         Move-Item -Path $PSScriptRoot\GuR_GI_Update.ps1 -Destination ..\GuR_GI_Update.ps1 -Force | out-null
@@ -18,12 +18,13 @@ function cleanupFiles {
     switch ($gieingabe)
         {
             'j' {
-	            Remove-Item $PSScriptRoot\custom\ -Recurse -Force
-                Remove-Item $PSScriptRoot\filedepot\ -Recurse -Force
-                Remove-Item $PSScriptRoot\Script-Sammlung\ -Recurse -Force
-                Remove-Item $PSScriptRoot\SIW-Files\ -Recurse -Force
-                Remove-Item $PSScriptRoot\sources\ -Recurse -Force
-                Write-Host "Erledigt..." -foregroundColor green
+	            git clean -fd
+                #Remove-Item $PSScriptRoot\custom\ -Recurse -Force
+                #Remove-Item $PSScriptRoot\filedepot\ -Recurse -Force
+                #Remove-Item $PSScriptRoot\Script-Sammlung\ -Recurse -Force
+                #Remove-Item $PSScriptRoot\SIW-Files\ -Recurse -Force
+                #Remove-Item $PSScriptRoot\sources\ -Recurse -Force
+                #Write-Host "Erledigt..." -foregroundColor green
                 checkForUpdates
             }
         }
