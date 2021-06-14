@@ -13,6 +13,8 @@ If(!(test-path "$PSScriptRoot\upgraded-meme\")) {
     & "$PSScriptRoot\git\cmd\git.exe" clone https://github.com/marcusbierer/upgraded-meme.git
 } else {
     Set-Location $PSScriptRoot\upgraded-meme\
+    & "$PSScriptRoot\git\cmd\git.exe" fetch origin main
+    & "$PSScriptRoot\git\cmd\git.exe" reset --hard
     & "$PSScriptRoot\git\cmd\git.exe" pull
 }
 Start-Process -FilePath "$PSHOME\powershell.exe" -ArgumentList '-NoExit', '-File', """$PSScriptRoot\upgraded-meme\GuR_GI_Main.ps1""" -verb runAs
