@@ -9,7 +9,7 @@ function checkForUpdates {
         Move-Item -Path $PSScriptRoot\GuR_GI_Update.ps1 -Destination ..\GuR_GI_Update.ps1 -Force | out-null
     }
     Write-Host "checkForUpdates done"
-    Read-Host "Warte:"
+    Read-Host "bekommt er es mit?:"
 }
 function cleanupFiles {
     Write-Host "Fortfahren? Alle Setups (auch Custom-Setups!) werden entfernt und neu heruntergeladen! (j/n)" -foregroundColor red
