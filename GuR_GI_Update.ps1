@@ -10,10 +10,5 @@ If(!(test-path "$PSScriptRoot\$output_dvs")) {
 }
 Set-Location $PSScriptRoot\
 & "$PSScriptRoot\.dvs\cmd\git.exe" clone https://github.com/marcusbierer/upgraded-meme.git
-If((test-path "$PSScriptRoot\upgraded-meme")) {
-    Move-Item .\upgraded-meme\* .\ | Out-Null
-}
-Write-Host "Jetzt kann es los gehen"
-Read-Host ""
-#Start-Process -FilePath "$PSHOME\powershell.exe" -ArgumentList '-NoExit', '-File', """$PSScriptRoot\GuR_GI_Client.ps1""" -verb runAs
-#Write-Host "Done" -ForegroundColor Green -NoNewline;
+Start-Process -FilePath "$PSHOME\powershell.exe" -ArgumentList '-NoExit', '-File', """$PSScriptRoot\upgraded-meme\GuR_GI_Client.ps1""" -verb runAs
+Write-Host "Done" -ForegroundColor Green -NoNewline;
