@@ -4,7 +4,7 @@ function checkForUpdates {
 	Write-Host "Script auf Updates prüfen"
     & "$PSScriptRoot\git\cmd\git.exe" fetch origin master
     & "$PSScriptRoot\git\cmd\git.exe" reset --hard
-    #& "$PSScriptRoot\git\cmd\git.exe" pull
+    & "$PSScriptRoot\git\cmd\git.exe" pull
     If((test-path "$PSScriptRoot\GuR_GI_Update.ps1")) {
         Move-Item -Path $PSScriptRoot\GuR_GI_Update.ps1 -Destination ..\GuR_GI_Update.ps1 -Force | out-null
     }
