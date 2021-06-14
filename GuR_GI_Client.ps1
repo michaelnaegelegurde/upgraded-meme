@@ -3,7 +3,6 @@ Set-Location -Path $PSScriptRoot
 function checkForUpdates {
 	Write-Host "Script auf Updates prüfen"
     & "$PSScriptRoot\git\cmd\git.exe" pull
-	$version = Get-Content -Path $PSScriptRoot\sources\version.txt -ErrorAction SilentlyContinue
     Move-Item -Path $PSScriptRoot\GuR_GI_Update.ps1 -Destination ..\GuR_GI_Update.ps1 -Force
     Write-Host "checkForUpdates done"
     Read-Host ""
