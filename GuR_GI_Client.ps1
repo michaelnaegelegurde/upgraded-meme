@@ -2,14 +2,14 @@ Clear-Host
 Set-Location -Path $PSScriptRoot
 function checkForUpdates {
 	Write-Host "Script auf Updates prüfen"
-    #& "$PSScriptRoot\git\cmd\git.exe" fetch origin master
+    & "$PSScriptRoot\git\cmd\git.exe" fetch origin master
     & "$PSScriptRoot\git\cmd\git.exe" reset --hard
-    & "$PSScriptRoot\git\cmd\git.exe" pull
+    #& "$PSScriptRoot\git\cmd\git.exe" pull
     If((test-path "$PSScriptRoot\GuR_GI_Update.ps1")) {
         Move-Item -Path $PSScriptRoot\GuR_GI_Update.ps1 -Destination ..\GuR_GI_Update.ps1 -Force | out-null
     }
     Write-Host "checkForUpdates done"
-    Read-Host "bekommt er es mit?:"
+    Read-Host "warte:"
 }
 function cleanupFiles {
     Write-Host "Fortfahren? Alle Setups (auch Custom-Setups!) werden entfernt und neu heruntergeladen! (j/n)" -foregroundColor red
