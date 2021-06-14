@@ -1,7 +1,7 @@
 Clear-Host
 Set-Location -Path $PSScriptRoot
 function checkForUpdates {
-	Write-Host "Script auf Updates prÃ¼fen"
+	Write-Host "Script auf Updates prüfen"
     & "$PSScriptRoot\git\cmd\git.exe" fetch origin master
     & "$PSScriptRoot\git\cmd\git.exe" reset --hard
     #& "$PSScriptRoot\git\cmd\git.exe" pull
