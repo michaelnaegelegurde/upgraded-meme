@@ -1,14 +1,18 @@
-Write-Host "GuR Grundinstallations-Script" -ForegroundColor Green
-$url_dvs = "https://static.gur.de/GIScripts/dvs.zip"
-$output_dvs = "dvs.zip"
+Write-Host "GuR Grundinstallations-Script-Updater 2.0" -ForegroundColor Green
+$url_git = "https://static.gur.de/GIScripts/git.zip"
+$output_git = "git.zip"
 Import-Module BitsTransfer
 Write-Host "Checking for Updates..."
-If(!(test-path "$PSScriptRoot\$output_dvs")) {
-    Start-BitsTransfer -Source $url_dvs -Destination $output_dvs | out-null
-    Expand-Archive -LiteralPath dvs.zip -DestinationPath $PSScriptRoot\ -Force
-    Set-ItemProperty $PSScriptRoot\.dvs\ -Name Attributes -Value "Hidden"
+If(!(test-path "$PSScriptRoot\$output_git")) {
+    Start-BitsTransfer -Source $url_git -Destination $output_git | out-null
+    Expand-Archive -LiteralPath git.zip -DestinationPath $PSScriptRoot\ -Force
+    Set-ItemProperty $PSScriptRoot\.git\ -Name Attributes -Value "Hidden"
 }
 Set-Location $PSScriptRoot\
-& "$PSScriptRoot\.dvs\cmd\git.exe" clone https://github.com/marcusbierer/upgraded-meme.git
-Start-Process -FilePath "$PSHOME\powershell.exe" -ArgumentList '-NoExit', '-File', """$PSScriptRoot\upgraded-meme\GuR_GI_Client.ps1""" -verb runAs
+If(!(test-path "$PSScriptRoot\upgraded-meme\")) {
+    & "$PSScriptRoot\.git\cmd\git.exe" clone https://github.com/marcusbierer/upgraded-meme.git
+} else {
+    & "$PSScriptRoot\.git\cmd\git.exe" pull
+}
+Start-Process -FilePath "$PSHOME\powershell.exe" -ArgumentList '-NoExit', '-File', """$PSScriptRoot\upgraded-meme\GuR_GI_Main.ps1""" -verb runAs
 Write-Host "Done" -ForegroundColor Green -NoNewline;
