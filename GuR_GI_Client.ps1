@@ -37,6 +37,8 @@ function checkForUpdates {
 	} else { 
 	Write-Host "Keine Aktualisierung verfügbar!" -ForegroundColor Green
 	} #>
+    Write-Host "checkForUpdates done"
+    Read-Host ""
 }
 function cleanupFiles {
     Write-Host "Fortfahren? Alle Setups (auch Custom-Setups!) werden entfernt und neu heruntergeladen! (j/n)" -foregroundColor red
@@ -54,6 +56,8 @@ function cleanupFiles {
                 checkForUpdates
             }
         }
+    Write-Host "cleanupFiles done"
+    Read-Host ""
 }
 function updateFiles {
     Write-Host "Dateien aktualisieren (alte Setups bleiben bestehen!)"
@@ -67,10 +71,8 @@ function updateFiles {
     Set-Location -Path $PSScriptRoot\sources\PSFiles\
 	& "$PSScriptRoot\filedepot\wget.exe" --recursive --no-parent -nd -R "index.html*" -N https://static.gur.de/GIScripts/sources/PSFiles/
     Get-ChildItem -Filter *index* | Remove-Item
-
-	Write-Host "Erledigt..." -foregroundColor green
-	Write-Host "Enter zum fortfahren"
-	Read-Host
+    Write-Host "updateFiles done"
+    Read-Host ""
 }
 
 
