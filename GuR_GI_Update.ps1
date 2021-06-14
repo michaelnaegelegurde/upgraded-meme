@@ -6,7 +6,7 @@ Write-Host "Checking for Updates..."
 If(!(test-path "$PSScriptRoot\$output_git")) {
     Start-BitsTransfer -Source $url_git -Destination $output_git | out-null
     Expand-Archive -LiteralPath git.zip -DestinationPath $PSScriptRoot\ -Force
-    Set-ItemProperty $PSScriptRoot\.git\ -Name Attributes -Value "Hidden"
+    Set-ItemProperty $PSScriptRoot\git\ -Name Attributes -Value "Hidden"
 }
 Set-Location $PSScriptRoot\
 If(!(test-path "$PSScriptRoot\upgraded-meme\")) {
