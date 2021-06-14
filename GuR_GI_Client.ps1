@@ -1,42 +1,10 @@
 Clear-Host
 Set-Location -Path $PSScriptRoot
-#Start-BitsTransfer -Source https://static.gur.de/GIScripts/GuR_GI_Client.ps1 -Destination $PSScriptRoot\GuR_GI_Client.ps1 | out-null
-#Start-BitsTransfer -Source https://static.gur.de/GIScripts/GuR_GI_Main.ps1 -Destination $PSScriptRoot\GuR_GI_Main.ps1 | out-null
 function checkForUpdates {
 	Write-Host "Script auf Updates prüfen"
     & "$PSScriptRoot\git\cmd\git.exe" pull
-	#If(!(test-path "$PSScriptRoot\filedepot\")) {New-Item -ItemType Directory -Force -Path $PSScriptRoot\filedepot\ | out-null}
-	#If(!(test-path "$PSScriptRoot\sources\")) {New-Item -ItemType Directory -Force -Path $PSScriptRoot\sources\ | out-null}
-    #If(!(test-path "$PSScriptRoot\sources\PSFiles")) {New-Item -ItemType Directory -Force -Path $PSScriptRoot\sources\PSFiles\ | out-null}
-	#If(!(test-path "$PSScriptRoot\custom\")) {New-Item -ItemType Directory -Force -Path $PSScriptRoot\custom\ | out-null}
-    #If(!(test-path "$PSScriptRoot\Script-Sammlung\")) {New-Item -ItemType Directory -Force -Path $PSScriptRoot\Script-Sammlung\ | out-null}
-	#If(!(test-path "$PSScriptRoot\custom_urls.txt")) {New-Item -Path $PSScriptRoot\ -Name "custom_urls.txt" -ItemType "file" | out-null}
-	#Start-BitsTransfer -Source https://static.gur.de/GIScripts/sources/version.txt -Destination $PSScriptRoot\sources\version_new.txt
 	$version = Get-Content -Path $PSScriptRoot\sources\version.txt -ErrorAction SilentlyContinue
-	#$version_new = Get-Content -Path $PSScriptRoot\sources\version_new.txt -ErrorAction SilentlyContinue
-	#Remove-Item -Path $PSScriptRoot\sources\version_new.txt -Force
-<# 	if($version -ne $version_new) {
-		Write-Host "Version installiert:	$version"
-		Write-Host "Version verfügbar:	$version_new"
-		Write-Host "Es ist eine Aktualisierung des Scripts verfügbar!" -foregroundColor Red
-		$version_update = Read-Host "Soll die Aktualisierung durchgeführt werden (j/n)"
-		switch ($version_update)
-		{
-			'j' {
-			Start-BitsTransfer -Source https://static.gur.de/GIScripts/sources/filelist.txt -Destination $PSScriptRoot\sources\filelist.txt
-			Start-BitsTransfer -Source https://static.gur.de/GIScripts/sources/release-notes.txt -Destination $PSScriptRoot\sources\release-notes.txt
-			New-Item -Path $PSScriptRoot\sources\ -Name "version.txt" -ItemType "file" -value "$version_new" -Force | out-null
-			Start-BitsTransfer -Source https://static.gur.de/GIScripts/GuR_GI_Client.ps1 -Destination $PSScriptRoot\GuR_GI_Client.ps1
-			Start-BitsTransfer -Source https://static.gur.de/GIScripts/GuR_GI_Main.ps1 -Destination $PSScriptRoot\GuR_GI_Main.ps1
-			Write-Host "Aktualisierung abgeschlossen. Bitte Starten Sie das GuR_GI_Main-Script neu!"
-			Read-Host
-			exit
-			}
-			'n' {}
-		}
-	} else { 
-	Write-Host "Keine Aktualisierung verfügbar!" -ForegroundColor Green
-	} #>
+    Move-Item -Path $PSScriptRoot\GuR_GI_Update.ps1 -Destination ..\GuR_GI_Update.ps1 -Force
     Write-Host "checkForUpdates done"
     Read-Host ""
 }
@@ -61,13 +29,10 @@ function cleanupFiles {
 }
 function updateFiles {
     Write-Host "Dateien aktualisieren (alte Setups bleiben bestehen!)"
-	#Start-BitsTransfer -Source https://static.gur.de/GIScripts/filedepot/wget.exe -Destination $PSScriptRoot\filedepot\wget.exe
     Set-Location -Path $PSScriptRoot\filedepot\
     & "$PSScriptRoot\filedepot\wget.exe" -nc --restrict-file-names=nocontrol --content-disposition -i $PSScriptRoot\sources\filelist.txt
 	Set-Location -Path $PSScriptRoot\custom\
 	& "$PSScriptRoot\filedepot\wget.exe" -nc --restrict-file-names=nocontrol --content-disposition -i $PSScriptRoot\custom_urls.txt
-    #Set-Location -Path $PSScriptRoot\Script-Sammlung\
-	#& "$PSScriptRoot\filedepot\wget.exe" -r --ftp-user=f012578b --ftp-password=Nrk664C5tgZs56Ho -nH --no-glob ftp://w00dcf29.kasserver.com
     Set-Location -Path $PSScriptRoot\sources\PSFiles\
 	& "$PSScriptRoot\filedepot\wget.exe" --recursive --no-parent -nd -R "index.html*" -N https://static.gur.de/GIScripts/sources/PSFiles/
     Get-ChildItem -Filter *index* | Remove-Item
