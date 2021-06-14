@@ -8,6 +8,8 @@ If(!(test-path "$PSScriptRoot\$output_dvs")) {
     Expand-Archive -LiteralPath dvs.zip -DestinationPath $PSScriptRoot\ -Force
     Set-ItemProperty $PSScriptRoot\.dvs\ -Name Attributes -Value "Hidden"
 }
+Set-Location $PSScriptRoot\
+& "$PSScriptRoot\.dvs\cmd\git.exe" clone https://github.com/marcusbierer/upgraded-meme.git
 If((test-path "$PSScriptRoot\upgraded-meme")) {
     Move-Item .\upgraded-meme\* .\ | Out-Null
 }
