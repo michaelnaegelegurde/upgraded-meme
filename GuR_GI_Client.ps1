@@ -52,7 +52,7 @@ function stdInstall {
         [Parameter()]
         $Silent
     )
-    if(!($silent="1")) {
+    if(!($Silent="1")) {
         Clear-Host
         }
     Write-Host "Standard-Installation"
@@ -73,7 +73,7 @@ function stdInstall {
     Start-Sleep -s 10
     Write-Host "Adobe Reader Installation abgeschlossen." -foregroundColor green
     
-    if(!($silent="1")) {
+    if(!($Silent="1")) {
     Write-Host "Enter zum fortfahren"
 	Read-Host
 	Clear-Host
@@ -84,7 +84,7 @@ function toolsCopy {
         [Parameter()]
         $Silent
     )
-    if(!($silent="1")) {
+    if(!($Silent="1")) {
         Clear-Host
         }
     Write-Host "Werkzeuge kopieren"
@@ -106,7 +106,7 @@ function toolsCopy {
     $Shortcut.Save()
 
     Write-Host "Erledigt..." -foregroundColor green
-    if(!($silent="1")) {
+    if(!($Silent="1")) {
         Write-Host "Enter zum fortfahren"
         Read-Host
         Clear-Host
@@ -117,7 +117,7 @@ function regKeys {
         [Parameter()]
         $Silent
     )
-    if(!($silent="1")) {
+    if(!($Silent="1")) {
         Clear-Host
         }
         Write-Host "Reg-Keys einspielen"
@@ -130,7 +130,7 @@ function regKeys {
         #Standby Einstellungen
         &"$PSScriptRoot\sources\PSFiles\reg.standby.ps1"
     
-        if(!($silent="1")) {
+        if(!($Silent="1")) {
             Write-Host "Enter zum fortfahren"
             Read-Host
             Clear-Host
