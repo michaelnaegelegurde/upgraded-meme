@@ -1,10 +1,7 @@
 Clear-Host
 Set-Location -Path $PSScriptRoot
-function checkForUpdates {
-    param (
-        [Parameter()]
-        $Silent
-    )
+function checkForUpdates($Silent = 0) {
+
 	Write-Host "Script auf Updates prüfen"
     & "$PSScriptRoot\git\cmd\git.exe" fetch origin main
     & "$PSScriptRoot\git\cmd\git.exe" reset --hard
@@ -47,11 +44,7 @@ function updateFiles {
     Read-Host ""
 }
 
-function stdInstall {
-    param (
-        [Parameter()]
-        $Silent
-    )
+function stdInstall($Silent = 0) {
     if(!($Silent="1")) {
         Clear-Host
         }
@@ -79,11 +72,7 @@ function stdInstall {
 	Clear-Host
     }
 }
-function toolsCopy {
-    param (
-        [Parameter()]
-        $Silent
-    )
+function toolsCopy($Silent = 0) {
     if(!($Silent="1")) {
         Clear-Host
         }
@@ -112,11 +101,8 @@ function toolsCopy {
         Clear-Host
         }
 }
-function regKeys {
-    param (
-        [Parameter()]
-        $Silent
-    )
+function regKeys($Silent = 0) {
+
     if(!($Silent="1")) {
         Clear-Host
         }
