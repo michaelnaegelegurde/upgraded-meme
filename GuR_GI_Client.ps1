@@ -191,13 +191,13 @@ Clear-Host
 switch ($gieingabe)
     {
         '1' {
-            stdInstall 0
+            stdInstall(0)
    }
         '2' {
-            toolsCopy 0
+            toolsCopy(0)
    }
         '3' {
-            regKeys 0
+            regKeys(0)
    }
   '4' {
     Write-Host "SIW-Datei erzeugen"

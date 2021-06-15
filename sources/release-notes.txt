@@ -79,6 +79,6 @@
 > Fehler mit Umlauten behoben
 
 ###############
-# 2021.6.15.1 #
+# 2021.6.15.0 #
 ###############
 > Umstellung auf GIT als Versionierungs-System
