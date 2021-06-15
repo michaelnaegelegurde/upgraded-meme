@@ -150,8 +150,7 @@ If(!(test-path "$PSScriptRoot\sources\version.txt")) {checkForUpdates}
 else {
 #checkForUpdates
 
-$version = Get-Content -Path $PSScriptRoot\sources\version.txt
-$host.ui.RawUI.WindowTitle = "GuR Grundinstallations-Script Clients $version"
+
 $n=1
 Import-Module BitsTransfer
 while ($n -gt 0){
@@ -161,6 +160,8 @@ function GuRGIMenue
         [Parameter()]
         $Silent
     )
+    $version = Get-Content -Path $PSScriptRoot\sources\version.txt
+    $host.ui.RawUI.WindowTitle = "GuR Grundinstallations-Script Clients $version"
     Clear-Host
     If(!(test-path "$PSScriptRoot\filedepot\ODT.exe")) {
     Write-Host "!ACHTUNG! !ACHTUNG! !ACHTUNG! !ACHTUNG!" -ForegroundColor Red
