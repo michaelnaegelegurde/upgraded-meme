@@ -79,6 +79,64 @@ function stdInstall {
 	Clear-Host
     }
 }
+function toolsCopy {
+    param (
+        [Parameter()]
+        $Silent
+    )
+    if(!($silent="1")) {
+        Clear-Host
+        }
+    Write-Host "Werkzeuge kopieren"
+    If(!(test-path "C:\GuR\"))
+    {
+          New-Item -ItemType Directory -Force -Path "C:\GuR\" | out-null
+    }
+    Copy-Item "$PSScriptRoot\filedepot\teamviewer_quicksupport.exe" -Destination "C:\GuR\teamviewer.exe"
+    Copy-Item "$PSScriptRoot\filedepot\AnyDesk.exe" -Destination "C:\GuR\anydesk.exe"
+
+    $WshShell = New-Object -comObject WScript.Shell
+    $Shortcut = $WshShell.CreateShortcut("C:\Users\Public\Desktop\GuR AnyDesk.lnk")
+    $Shortcut.TargetPath = "C:\GuR\anydesk.exe"
+    $Shortcut.Save()
+
+    $WshShell = New-Object -comObject WScript.Shell
+    $Shortcut = $WshShell.CreateShortcut("C:\Users\Public\Desktop\GuR TeamViewer.lnk")
+    $Shortcut.TargetPath = "C:\GuR\teamviewer.exe"
+    $Shortcut.Save()
+
+    Write-Host "Erledigt..." -foregroundColor green
+    if(!($silent="1")) {
+        Write-Host "Enter zum fortfahren"
+        Read-Host
+        Clear-Host
+        }
+}
+
+function regKeys {
+    param (
+        [Parameter()]
+        $Silent
+    )
+    if(!($silent="1")) {
+        Clear-Host
+        }
+        Write-Host "Reg-Keys einspielen"
+        #Microsoft-Udate Einstellungen
+        &"$PSScriptRoot\sources\PSFiles\reg.msupdate.ps1"
+        
+        #RDP Einstellungen
+        &"$PSScriptRoot\sources\PSFiles\reg.rdpconfig.ps1"
+    
+        #Standby Einstellungen
+        &"$PSScriptRoot\sources\PSFiles\reg.standby.ps1"
+    
+        if(!($silent="1")) {
+            Write-Host "Enter zum fortfahren"
+            Read-Host
+            Clear-Host
+            }
+}
 
 If(!(test-path "$PSScriptRoot\sources\version.txt")) {checkForUpdates}
 else {
@@ -119,7 +177,9 @@ function GuRGIMenue
 	Write-Host
 	Write-Host "6: Office entfernen"
 	Write-Host
+	Write-Host "7: Grund-Setup (1-3 automatisch durchführen"
 	Write-Host	
+    Write-Host	
 	Write-Host "96: Versionshistorie"
 	Write-Host 
 	Write-Host "97: Script auf Updates prüfen"
@@ -142,48 +202,11 @@ switch ($gieingabe)
         '1' {
             stdInstall
    }
-  '2' {
-    Write-Host "Werkzeuge kopieren"
-		If(!(test-path "C:\GuR\"))
-		{
-      		New-Item -ItemType Directory -Force -Path "C:\GuR\" | out-null
-		}
-		Copy-Item "$PSScriptRoot\filedepot\teamviewer_quicksupport.exe" -Destination "C:\GuR\teamviewer.exe"
-		Copy-Item "$PSScriptRoot\filedepot\AnyDesk.exe" -Destination "C:\GuR\anydesk.exe"
-
-        $WshShell = New-Object -comObject WScript.Shell
-        $Shortcut = $WshShell.CreateShortcut("C:\Users\Public\Desktop\GuR AnyDesk.lnk")
-        $Shortcut.TargetPath = "C:\GuR\anydesk.exe"
-        $Shortcut.Save()
-
-        $WshShell = New-Object -comObject WScript.Shell
-        $Shortcut = $WshShell.CreateShortcut("C:\Users\Public\Desktop\GuR TeamViewer.lnk")
-        $Shortcut.TargetPath = "C:\GuR\teamviewer.exe"
-        $Shortcut.Save()
-
-        Write-Host "Erledigt..." -foregroundColor green
-        if(!($silent="1")) {
-            Write-Host "Enter zum fortfahren"
-            Read-Host
-            Clear-Host
-            }
+        '2' {
+            toolsCopy
    }
-  '3' {
-    Write-Host "Reg-Keys einspielen"
-    #Microsoft-Udate Einstellungen
-    &"$PSScriptRoot\sources\PSFiles\reg.msupdate.ps1"
-    
-    #RDP Einstellungen
-    &"$PSScriptRoot\sources\PSFiles\reg.rdpconfig.ps1"
-
-    #Standby Einstellungen
-    &"$PSScriptRoot\sources\PSFiles\reg.standby.ps1"
-
-    if(!($silent="1")) {
-        Write-Host "Enter zum fortfahren"
-        Read-Host
-        Clear-Host
-        }
+        '3' {
+            regKeys
    }
   '4' {
     Write-Host "SIW-Datei erzeugen"
@@ -210,13 +233,19 @@ switch ($gieingabe)
     Read-Host "Enter zum Fortfahren"
 	Clear-Host
    }
-  '6' {
+   '6' {
     Write-Host "Office entfernen"
     #Remove Office
 #	Set-Location -Path $PSScriptRoot\filedepot\
     & "$PSScriptRoot\filedepot\ODT.exe" /configure "$PSScriptRoot\sources\PSFiles\del.office.xml"
     Read-Host "Enter zum Fortfahren"
 	Clear-Host
+   }
+   '6' {
+    Write-Host "Grund-Setup (1-3 automatisch durchführen"
+    stdInstall
+    toolsCopy
+    regKeys
    }
   '96' {
     Write-Host "Versionshistorie"
