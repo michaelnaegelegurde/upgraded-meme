@@ -142,10 +142,6 @@ Import-Module BitsTransfer
 while ($n -gt 0){
 function GuRGIMenue
 {
-    param (
-        [Parameter()]
-        $Silent
-    )
     $version = Get-Content -Path $PSScriptRoot\sources\version.txt
     $host.ui.RawUI.WindowTitle = "GuR Grundinstallations-Script Clients $version"
     Clear-Host
