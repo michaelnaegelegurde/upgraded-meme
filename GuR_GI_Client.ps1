@@ -140,7 +140,7 @@ function regKeys {
 
 If(!(test-path "$PSScriptRoot\sources\version.txt")) {checkForUpdates}
 else {
-checkForUpdates
+#checkForUpdates
 
 $version = Get-Content -Path $PSScriptRoot\sources\version.txt
 $host.ui.RawUI.WindowTitle = "GuR Grundinstallations-Script Clients $version"
