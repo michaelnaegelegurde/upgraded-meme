@@ -96,7 +96,7 @@ function GuRGIMenue
         $Silent
     )
     Clear-Host
-    If(!(test-path "$PSScriptRoot\sources\filelist.txt")) {
+    If(!(test-path "$PSScriptRoot\filedepot\ODT.exe")) {
     Write-Host "!ACHTUNG! !ACHTUNG! !ACHTUNG! !ACHTUNG!" -ForegroundColor Red
     Write-Host "Es wurden noch keine Installations-Dateien heruntergeladen!" -ForegroundColor Red
     Write-Host "Bitte Punkt 99 ausführen!" -ForegroundColor Red
