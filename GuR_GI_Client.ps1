@@ -5,7 +5,7 @@ function checkForUpdates {
         [Parameter()]
         $Silent
     )
-	Write-Host "Script auf Updates prÃ¼fen"
+	Write-Host "Script auf Updates prüfen"
     & "$PSScriptRoot\git\cmd\git.exe" fetch origin main
     & "$PSScriptRoot\git\cmd\git.exe" reset --hard
     & "$PSScriptRoot\git\cmd\git.exe" pull
@@ -157,7 +157,7 @@ function GuRGIMenue
     If(!(test-path "$PSScriptRoot\filedepot\ODT.exe")) {
     Write-Host "!ACHTUNG! !ACHTUNG! !ACHTUNG! !ACHTUNG!" -ForegroundColor Red
     Write-Host "Es wurden noch keine Installations-Dateien heruntergeladen!" -ForegroundColor Red
-    Write-Host "Bitte Punkt 99 ausfÃ¼hren!" -ForegroundColor Red
+    Write-Host "Bitte Punkt 99 ausführen!" -ForegroundColor Red
     }
 	Write-Host "GuR Grundinstallations-Script Clients $version" -ForegroundColor Green 
 	Write-Host "================================"
@@ -177,12 +177,12 @@ function GuRGIMenue
 	Write-Host
 	Write-Host "6: Office entfernen"
 	Write-Host
-	Write-Host "7: Grund-Setup (1-3 automatisch durchfÃ¼hren"
+	Write-Host "7: Grund-Setup (1-3 automatisch durchführen"
 	Write-Host	
     Write-Host	
 	Write-Host "96: Versionshistorie"
 	Write-Host 
-	Write-Host "97: Script auf Updates prÃ¼fen"
+	Write-Host "97: Script auf Updates prüfen"
 	Write-Host
 	Write-Host "98: Verzeichnisse bereinigen"
 	Write-Host 
@@ -242,7 +242,7 @@ switch ($gieingabe)
 	Clear-Host
    }
    '7' {
-    Write-Host "Grund-Setup (1-3 automatisch durchfÃ¼hren"
+    Write-Host "Grund-Setup (1-3 automatisch durchführen"
     stdInstall
     toolsCopy
     regKeys
