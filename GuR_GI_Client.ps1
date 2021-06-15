@@ -241,7 +241,7 @@ switch ($gieingabe)
     Read-Host "Enter zum Fortfahren"
 	Clear-Host
    }
-   '6' {
+   '7' {
     Write-Host "Grund-Setup (1-3 automatisch durchführen"
     stdInstall
     toolsCopy
