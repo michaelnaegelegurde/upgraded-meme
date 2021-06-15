@@ -112,7 +112,6 @@ function toolsCopy {
         Clear-Host
         }
 }
-
 function regKeys {
     param (
         [Parameter()]
@@ -137,7 +136,16 @@ function regKeys {
             Clear-Host
             }
 }
-
+function genCustom {
+    If(!(test-path "$PSScriptRoot\custom\"))
+    {
+          New-Item -ItemType Directory -Force -Path "$PSScriptRoot\custom\" | out-null
+    }
+    If(!(test-path "$PSScriptRoot\custom_urls.txt"))
+    {
+          New-Item -ItemType File -Force -Path "$PSScriptRoot\custom_urls.txt" | out-null
+    }
+}
 If(!(test-path "$PSScriptRoot\sources\version.txt")) {checkForUpdates}
 else {
 #checkForUpdates
