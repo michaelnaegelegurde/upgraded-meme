@@ -5,8 +5,6 @@ function checkForUpdates {
         [Parameter()]
         $Silent
     )
-    write-Host $Silent
-    Read-Host "warte"
 	Write-Host "Script auf Updates prüfen"
     & "$PSScriptRoot\git\cmd\git.exe" fetch origin main
     & "$PSScriptRoot\git\cmd\git.exe" reset --hard
@@ -15,7 +13,6 @@ function checkForUpdates {
         Move-Item -Path $PSScriptRoot\GuR_GI_Update.ps1 -Destination ..\GuR_GI_Update.ps1 -Force | out-null
     }
     Write-Host "checkForUpdates done"
-    Read-Host "unicode:"
 }
 function cleanupFiles {
     Write-Host "Fortfahren? Alle Setups (auch Custom-Setups!) werden entfernt und neu heruntergeladen! (j/n)" -foregroundColor red
@@ -50,6 +47,38 @@ function updateFiles {
     Read-Host ""
 }
 
+function stdInstall {
+    param (
+        [Parameter()]
+        $Silent
+    )
+    if(!($silent="1")) {
+        Clear-Host
+        }
+    Write-Host "Standard-Installation"
+    Write-Host "Installiere Firefox..."
+    Set-Location -Path $PSScriptRoot\filedepot\
+    $firefox_version  = Get-ChildItem -Filter *Firefox*.exe | Select-Object -last 1 | Get-ChildItem -Name
+    & "$PSScriptRoot\filedepot\$firefox_version" /S -Wait
+    Start-Sleep -s 10
+    Write-Host "Firefox Installation abgeschlossen." -foregroundColor green
+    
+    Write-Host "Installiere 7-Zip..."
+    & "$PSScriptRoot\filedepot\7z1900-x64.exe" /S -Wait
+    Start-Sleep -s 3
+    Write-Host "7-Zip Installation abgeschlossen." -foregroundColor green
+    
+    Write-Host "Installiere Adobe Reader..."
+    & "$PSScriptRoot\filedepot\AcroRdrDC2100120135_de_DE.exe" /sPB -Wait
+    Start-Sleep -s 10
+    Write-Host "Adobe Reader Installation abgeschlossen." -foregroundColor green
+    
+    if(!($silent="1")) {
+    Write-Host "Enter zum fortfahren"
+	Read-Host
+	Clear-Host
+    }
+}
 
 If(!(test-path "$PSScriptRoot\sources\version.txt")) {checkForUpdates}
 else {
@@ -62,6 +91,10 @@ Import-Module BitsTransfer
 while ($n -gt 0){
 function GuRGIMenue
 {
+    param (
+        [Parameter()]
+        $Silent
+    )
     Clear-Host
     If(!(test-path "$PSScriptRoot\sources\filelist.txt")) {
     Write-Host "!ACHTUNG! !ACHTUNG! !ACHTUNG! !ACHTUNG!" -ForegroundColor Red
@@ -107,28 +140,7 @@ Clear-Host
 switch ($gieingabe)
     {
         '1' {
-    Clear-Host
-    Write-Host "Standard-Installation"
-    Write-Host "Installiere Firefox..."
-    Set-Location -Path $PSScriptRoot\filedepot\
-    $firefox_version  = Get-ChildItem -Filter *Firefox*.exe | Select-Object -last 1 | Get-ChildItem -Name
-    & "$PSScriptRoot\filedepot\$firefox_version" /S -Wait
-    Start-Sleep -s 10
-    Write-Host "Firefox Installation abgeschlossen." -foregroundColor green
-    
-    Write-Host "Installiere 7-Zip..."
-    & "$PSScriptRoot\filedepot\7z1900-x64.exe" /S -Wait
-    Start-Sleep -s 3
-    Write-Host "7-Zip Installation abgeschlossen." -foregroundColor green
-    
-    Write-Host "Installiere Adobe Reader..."
-    & "$PSScriptRoot\filedepot\AcroRdrDC2100120135_de_DE.exe" /sPB -Wait
-    Start-Sleep -s 10
-    Write-Host "Adobe Reader Installation abgeschlossen." -foregroundColor green
-
-    Write-Host "Enter zum fortfahren"
-	Read-Host
-	Clear-Host
+            stdInstall
    }
   '2' {
     Write-Host "Werkzeuge kopieren"
@@ -150,8 +162,11 @@ switch ($gieingabe)
         $Shortcut.Save()
 
         Write-Host "Erledigt..." -foregroundColor green
-		Read-Host "Enter zum Fortfahren"
-		Clear-Host
+        if(!($silent="1")) {
+            Write-Host "Enter zum fortfahren"
+            Read-Host
+            Clear-Host
+            }
    }
   '3' {
     Write-Host "Reg-Keys einspielen"
@@ -164,8 +179,11 @@ switch ($gieingabe)
     #Standby Einstellungen
     &"$PSScriptRoot\sources\PSFiles\reg.standby.ps1"
 
-    Read-Host "Enter zum Fortfahren"
-	Clear-Host
+    if(!($silent="1")) {
+        Write-Host "Enter zum fortfahren"
+        Read-Host
+        Clear-Host
+        }
    }
   '4' {
     Write-Host "SIW-Datei erzeugen"
