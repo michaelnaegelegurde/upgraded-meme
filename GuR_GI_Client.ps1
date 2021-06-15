@@ -209,13 +209,13 @@ Clear-Host
 switch ($gieingabe)
     {
         '1' {
-            stdInstall
+            stdInstall -Silent 0
    }
         '2' {
-            toolsCopy
+            toolsCopy -Silent 0
    }
         '3' {
-            regKeys
+            regKeys -Silent 0
    }
   '4' {
     Write-Host "SIW-Datei erzeugen"
