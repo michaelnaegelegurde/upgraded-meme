@@ -1,3 +1,4 @@
+$PSDefaultParameterValues['Out-File:Encoding'] = 'windows1252'
 Clear-Host
 Set-Location -Path $PSScriptRoot
 function checkForUpdates($Silent) {
