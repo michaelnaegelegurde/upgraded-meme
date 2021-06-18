@@ -82,3 +82,11 @@
 # 2021.6.15.0 #
 ###############
 > Umstellung auf GIT als Versionierungs-System
+
+###############
+# 2021.6.18.0 #
+###############
+> Grund-Setup (Punkt 7) eingefügt
+> Adobe Reader auf Version 2100520048 aktualisiert
+> Adobe Reader Setup automatisch auf neuste Version umgestellt
+> Umlaute entfernt

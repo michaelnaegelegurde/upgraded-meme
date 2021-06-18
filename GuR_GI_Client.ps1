@@ -3,7 +3,7 @@ Clear-Host
 Set-Location -Path $PSScriptRoot
 function checkForUpdates($Silent) {
 
-	Write-Host "Script auf Updates pr�fen"
+	Write-Host "Script auf Updates pruefen"
     & "$PSScriptRoot\git\cmd\git.exe" fetch origin main
     & "$PSScriptRoot\git\cmd\git.exe" reset --hard
     & "$PSScriptRoot\git\cmd\git.exe" pull
@@ -63,7 +63,9 @@ function stdInstall($Silent) {
     Write-Host "7-Zip Installation abgeschlossen." -foregroundColor green
     
     Write-Host "Installiere Adobe Reader..."
-    & "$PSScriptRoot\filedepot\AcroRdrDC2100120135_de_DE.exe" /sPB -Wait
+    Set-Location -Path $PSScriptRoot\filedepot\
+    $adobe_version  = Get-ChildItem -Filter *AcroRdrDC*.exe | Select-Object -last 1 | Get-ChildItem -Name
+    & "$PSScriptRoot\filedepot\$adobe_version" /sPB -Wait
     Start-Sleep -s 10
     Write-Host "Adobe Reader Installation abgeschlossen." -foregroundColor green
     
@@ -149,7 +151,7 @@ function GuRGIMenue
     If(!(test-path "$PSScriptRoot\filedepot\ODT.exe")) {
     Write-Host "!ACHTUNG! !ACHTUNG! !ACHTUNG! !ACHTUNG!" -ForegroundColor Red
     Write-Host "Es wurden noch keine Installations-Dateien heruntergeladen!" -ForegroundColor Red
-    Write-Host "Bitte Punkt 99 ausf�hren!" -ForegroundColor Red
+    Write-Host "Bitte Punkt 99 ausfuehren!" -ForegroundColor Red
     }
 	Write-Host "GuR Grundinstallations-Script Clients $version" -ForegroundColor Green 
 	Write-Host "================================"
@@ -169,12 +171,12 @@ function GuRGIMenue
 	Write-Host
 	Write-Host "6: Office entfernen"
 	Write-Host
-	Write-Host "7: Grund-Setup (1-3 automatisch durchf�hren"
+	Write-Host "7: Grund-Setup (1-3 automatisch durchfuehren"
 	Write-Host	
     Write-Host	
 	Write-Host "96: Versionshistorie"
 	Write-Host 
-	Write-Host "97: Script auf Updates pr�fen"
+	Write-Host "97: Script auf Updates pruefen"
 	Write-Host
 	Write-Host "98: Verzeichnisse bereinigen"
 	Write-Host 
@@ -234,7 +236,7 @@ switch ($gieingabe)
 	Clear-Host
    }
    '7' {
-    Write-Host "Grund-Setup (1-3 automatisch durchführen)"
+    Write-Host "Grund-Setup (1-3 automatisch durchfuehren)"
     stdInstall "1"
     toolsCopy "1"
     regKeys "1"
