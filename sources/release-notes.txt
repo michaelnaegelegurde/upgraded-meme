@@ -23,8 +23,8 @@
 	7-Zip
 	Adobe Reader
 > Werkzeuge kopieren
-	Verkn�pfung von TeamViewer GuR auf öffentlichen Desktop
-	Verkn�pfung von AnyDesk GuR auf öffentlichen Desktop
+	Verknuepfung von TeamViewer GuR auf oeffentlichen Desktop
+	Verknuepfung von AnyDesk GuR auf oeffentlichen Desktop
 	Aktualisierung SIW Portable Version
 
 ###############
@@ -86,7 +86,7 @@
 ###############
 # 2021.6.18.0 #
 ###############
-> Grund-Setup (Punkt 7) eingefügt
+> Grund-Setup (Punkt 7) eingefuegt
 > Adobe Reader auf Version 2100520048 aktualisiert
 > Adobe Reader Setup automatisch auf neuste Version umgestellt
 > Umlaute entfernt
