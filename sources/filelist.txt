@@ -1,4 +1,4 @@
-https://www.7-zip.org/a/7z2107-x64.exe
+https://www.7-zip.org/a/7z2201-x64.exe
 https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=de
 https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/2100520048/AcroRdrDC2100520048_de_DE.exe
 https://download.anydesk.com/AnyDesk.exe
